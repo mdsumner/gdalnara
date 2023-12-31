@@ -16,6 +16,7 @@ LinkingTo:
     Rcpp,
     vapour
 Imports: 
-    Rcpp
+    Rcpp,
+    vapour
 URL: https://github.com/mdsumner/gdalnara
 BugReports: https://github.com/mdsumner/gdalnara/issues

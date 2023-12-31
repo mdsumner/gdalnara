@@ -37,3 +37,4 @@
 ^Dockerfile$
 ^inst/ci$
 ^file.tif$
+^CODE_OF_CONDUCT\.md$
