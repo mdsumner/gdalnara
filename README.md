@@ -148,32 +148,41 @@ library(gdalnara)
 library(vapour)
 system.time(nara <- gdal_raster_nara(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.557   0.021   0.577
+#>   0.522   0.020   0.542
 pryr::object_size(nara)
 #> 4.20 MB
 
 system.time(chra <- gdal_raster_image(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.734   0.016   0.750
+#>   0.712   0.028   0.740
 pryr::object_size(chra)
 #> 9.95 MB
 
 ## it's very quick
 system.time(ximage(nara, asp = 1))
-#>    user  system elapsed 
-#>   0.008   0.000   0.009
-
-
-x <- aperm(nara::nr_to_array(nara[[1]])[,,-4],   ## drop alpha since we don't use it
-           c(2, 1, 3)) ## and transpose so we can prove it's actually doing something
-ximage(nara, asp = 1)
-system.time(rasterImage(x, ex[1], ex[3], ex[2], ex[4]))
 ```
 
 <img src="man/figures/README-world-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.298   0.024   0.321
+    #>   0.009   0.000   0.008
+
+It takes a lot of data to convert to RGB array and quite some time to
+plot.
+
+``` r
+
+x <- aperm(nara::nr_to_array(nara[[1]])[,,-4],   ## drop alpha since we don't use it
+           c(2, 1, 3)) ## and transpose so we can prove it's actually doing something
+
+ximage(nara, asp = 1)
+system.time(rasterImage(x, ex[1], ex[3], ex[2], ex[4]))
+```
+
+<img src="man/figures/README-aperm-1.png" width="100%" />
+
+    #>    user  system elapsed 
+    #>   0.268   0.064   0.333
     pryr::object_size(x)
     #> 25.17 MB
 
