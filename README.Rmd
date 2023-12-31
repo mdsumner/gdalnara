@@ -50,7 +50,7 @@ m <- matrix(as.integer(1:12), ncol = 3L, byrow = TRUE)
 plot(NA, xlim = c(0, 3), ylim = c(0, 4), asp = 1)
 
 scl <- function(x) {xl <- range(x, na.rm = TRUE); (x - xl[1])/diff(xl)}
-rasterImage(scales::rescale(m), 0, 0, 3, 4, interpolate = FALSE)
+rasterImage(scl(m), 0, 0, 3, 4, interpolate = FALSE)
 ```
 
 with numbers in the range 0,1 we automatically get a greyscale image, but we can do that explicitly too:

@@ -37,7 +37,7 @@ m <- matrix(as.integer(1:12), ncol = 3L, byrow = TRUE)
 plot(NA, xlim = c(0, 3), ylim = c(0, 4), asp = 1)
 
 scl <- function(x) {xl <- range(x, na.rm = TRUE); (x - xl[1])/diff(xl)}
-rasterImage(scales::rescale(m), 0, 0, 3, 4, interpolate = FALSE)
+rasterImage(scl(m), 0, 0, 3, 4, interpolate = FALSE)
 ```
 
 <img src="man/figures/README-matrix-1.png" width="100%" />
@@ -149,13 +149,13 @@ library(gdalnara)
 library(vapour)
 system.time(nara <- gdal_raster_nara(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.539   0.012   0.550
+#>   0.529   0.032   0.560
 pryr::object_size(nara)
 #> 4.20 MB
 
 system.time(chra <- gdal_raster_image(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.714   0.036   0.749
+#>   0.723   0.036   0.759
 pryr::object_size(chra)
 #> 9.95 MB
 
@@ -166,7 +166,7 @@ system.time(ximage(nara, asp = 1))
 <img src="man/figures/README-world-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.010   0.000   0.009
+    #>   0.009   0.000   0.009
 
 It takes a lot of data to convert to RGB array and quite some time to
 plot.
@@ -183,7 +183,7 @@ system.time(rasterImage(x, ex[1], ex[3], ex[2], ex[4]))
 <img src="man/figures/README-aperm-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.279   0.056   0.335
+    #>   0.309   0.040   0.349
     pryr::object_size(x)
     #> 25.17 MB
 
