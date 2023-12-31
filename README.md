@@ -22,8 +22,9 @@ an odd ordering convention. This is different to
 - the raster-ordered array of RGB(A) used by `graphics::rasterImage()`,
   either values in 0,255 or character hex values in a matrix
 
-It’s not exposed at all in R documentation, but is used internally and
-externally by the png package.
+It’s not exposed at all in R documentation, but is used internally in R,
+and externally by the png package, and a little bit by farver and nara
+(more below).
 
 First let’s look at `rasterImage()`.
 
@@ -148,13 +149,13 @@ library(gdalnara)
 library(vapour)
 system.time(nara <- gdal_raster_nara(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.522   0.020   0.542
+#>   0.539   0.012   0.550
 pryr::object_size(nara)
 #> 4.20 MB
 
 system.time(chra <- gdal_raster_image(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.712   0.028   0.740
+#>   0.714   0.036   0.749
 pryr::object_size(chra)
 #> 9.95 MB
 
@@ -165,7 +166,7 @@ system.time(ximage(nara, asp = 1))
 <img src="man/figures/README-world-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.009   0.000   0.008
+    #>   0.010   0.000   0.009
 
 It takes a lot of data to convert to RGB array and quite some time to
 plot.
@@ -182,7 +183,7 @@ system.time(rasterImage(x, ex[1], ex[3], ex[2], ex[4]))
 <img src="man/figures/README-aperm-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.268   0.064   0.333
+    #>   0.279   0.056   0.335
     pryr::object_size(x)
     #> 25.17 MB
 

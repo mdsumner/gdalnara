@@ -38,7 +38,7 @@ Well exactly, it's an integer-encoded value of RGB(A) in a matrix with an odd or
 - the xyz list of (usually degenerate) rectilinear x,y vectors and a z matrix in `graphics::image()`
 - the raster-ordered array of RGB(A) used by `graphics::rasterImage()`, either values in 0,255 or character hex values in a matrix 
 
-It's not exposed at all in R documentation, but is used internally and externally by the png package. 
+It's not exposed at all in R documentation, but is used internally in R, and externally by the png package, and a little bit by farver and nara (more below). 
 
 First let's look at `rasterImage()`. 
 
