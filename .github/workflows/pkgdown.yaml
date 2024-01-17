@@ -23,8 +23,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Install sudo package
-        run: DEBIAN_FRONTEND=noninteractive apt update && apt install sudo
+      - name: Install sudo and fix tzdata
+         run: |
+          echo 'APT::Get::Assume-Yes "true";' | tee -a /etc/apt/apt.conf.d/00Do-not-ask
+          echo $TZ > /etc/timezone && \
+            apt-get update && apt-get install -y tzdata && \
+            ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+            dpkg-reconfigure -f noninteractive tzdata
+          apt-get update && apt-get install sudo
 
       - uses: actions/checkout@v3
 
