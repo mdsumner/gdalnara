@@ -19,7 +19,6 @@
 ^cran-comments\.md$
 ^inst/benchmarks/test-mem.R$
 ^tests/grindy$
-^vapour\.Rproj$
 ^config\\..*$
 ^autom4te\.cache$
 ^CRAN-RELEASE$
