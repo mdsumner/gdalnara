@@ -24,7 +24,7 @@ jobs:
       contents: write
     steps:
       - name: Install sudo and fix tzdata
-         run: |
+        run: |
           echo 'APT::Get::Assume-Yes "true";' | tee -a /etc/apt/apt.conf.d/00Do-not-ask
           echo $TZ > /etc/timezone && \
             apt-get update && apt-get install -y tzdata && \
