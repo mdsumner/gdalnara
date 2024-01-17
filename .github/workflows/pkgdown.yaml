@@ -25,12 +25,11 @@ jobs:
     steps:
       - name: Install sudo and fix tzdata
         run: |
-          echo 'APT::Get::Assume-Yes "true";' | tee -a /etc/apt/apt.conf.d/00Do-not-ask
-          echo $TZ > /etc/timezone && \
-            apt-get update && apt-get install -y tzdata && \
-            ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-            dpkg-reconfigure -f noninteractive tzdata
-          apt-get update && apt-get install sudo
+          apt-get update
+          ln -fs /usr/share/zoneinfo/UTC /etc/localtime
+          DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+          dpkg-reconfigure --frontend noninteractive tzdata
+          apt-get update && apt-get install -y sudo
 
       - uses: actions/checkout@v3
 
