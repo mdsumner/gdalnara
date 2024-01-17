@@ -1,10 +1,12 @@
 Package: gdalnara
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Read Imagery Data Directly to 'nativeRaster' With 'GDAL'
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Michael", "Sumner", , "mdsumner@gmail.com", role = c("aut", "cre"))
+Description: Read imagery data from any GDAL source to R's nativeRaster matrix. The 
+ nativeRaster is largely undocumented, an integer-encoded RGB/A matrix in raster-orientation, 
+ used by 'rasterImage()' and the png package. Doing the conversion from raw bytes in GDAL saves a significant
+ amount of time and memory to get a picture from a raster source (file or URL or other GDAL supported raster). 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

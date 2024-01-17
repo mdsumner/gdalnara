@@ -135,6 +135,9 @@ function `readPNG()` and its `native` arg, in the farver package by
 Thomas Pederson, and in the nara package by Mike FC (which inspired this
 name and the effort to figure this out).
 
+There’s a few packages on CRAN that know about nativeRaster:
+<https://github.com/search?q=org%3Acran%20nativeRaster&type=code>
+
 ## A real world example
 
 GDAL can read imagery to any extent and projection.
@@ -149,13 +152,13 @@ library(gdalnara)
 library(vapour)
 system.time(nara <- gdal_raster_nara(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.529   0.032   0.560
+#>   0.352   0.024   0.376
 pryr::object_size(nara)
 #> 4.20 MB
 
 system.time(chra <- gdal_raster_image(dsn, target_dim = c(1024, 0), target_ext = ex, target_crs = crs))
 #>    user  system elapsed 
-#>   0.723   0.036   0.759
+#>   0.547   0.064   0.611
 pryr::object_size(chra)
 #> 9.95 MB
 
@@ -166,7 +169,7 @@ system.time(ximage(nara, asp = 1))
 <img src="man/figures/README-world-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.009   0.000   0.009
+    #>   0.007   0.000   0.007
 
 It takes a lot of data to convert to RGB array and quite some time to
 plot.
@@ -183,7 +186,7 @@ system.time(rasterImage(x, ex[1], ex[3], ex[2], ex[4]))
 <img src="man/figures/README-aperm-1.png" width="100%" />
 
     #>    user  system elapsed 
-    #>   0.309   0.040   0.349
+    #>   0.286   0.040   0.326
     pryr::object_size(x)
     #> 25.17 MB
 
@@ -204,7 +207,12 @@ im <- gdal_raster_nara(dsn, target_dim = c(1024, 0))
 ximage(im)
 ```
 
-<img src="man/figures/README-gdal-3.7-1.png" width="100%" />
+<figure>
+<img src="man/figures2/README-gdal-3.7-1.png"
+alt="world topography scaled to grey" />
+<figcaption aria-hidden="true">world topography scaled to
+grey</figcaption>
+</figure>
 
 ## Installation
 

@@ -165,13 +165,15 @@ We can even scale data to grey from numeric and read efficiently with gdalnara.
 
 This is not that successful because we need to know the source range, quite complicated for subsets and reprojections etc. (but will fix later ...). 
 
-```{r gdal-3.7}
+```{r gdal-3.7, eval=FALSE}
 dsn <- "vrt:///vsicurl/https://gebco2023.s3.valeria.science/gebco_2023_land_cog.tif?scale=-7676,5500,0,255&ot=Float32"
 
 im <- gdal_raster_nara(dsn, target_dim = c(1024, 0))
 ximage(im)
 
 ```
+
+![world topography scaled to grey](man/figures2/README-gdal-3.7-1.png)
 
 
 ## Installation
