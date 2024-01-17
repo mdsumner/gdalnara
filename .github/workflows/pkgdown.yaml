@@ -24,7 +24,7 @@ jobs:
       contents: write
     steps:
       - name: Install sudo package
-        run: apt update && apt install sudo
+        run: DEBIAN_FRONTEND=noninteractive apt update && apt install sudo
 
       - uses: actions/checkout@v3
 
