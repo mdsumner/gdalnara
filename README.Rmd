@@ -116,6 +116,9 @@ Doing things in C++ next to where we access the raster data with GDAL is neat, b
 
 This code is also used in the png package by Simon Urbanek, with the function `readPNG()` and its `native` arg, in the farver package by Thomas Pederson, and in the nara package by Mike FC (which inspired this name and the effort to figure this out). 
 
+
+There's a few packages on CRAN that know about nativeRaster: https://github.com/search?q=org%3Acran%20nativeRaster&type=code
+
 ## A real world example
 
 GDAL can read imagery to any extent and projection. 
