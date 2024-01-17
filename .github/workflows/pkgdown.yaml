@@ -23,6 +23,9 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Install sudo package
+        run: apt update && apt install sudo
+
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
