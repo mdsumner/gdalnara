@@ -35,6 +35,13 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+      -name: install pak
+       run: Rscript -e 'install.packages("pak")'
+
+      -name: install packages
+       run: Rscript -e 'pak::pak(c("rmarkdown", "markdown", "knitr"))'
+
+
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
