@@ -14,7 +14,7 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
-    container: ghcr.io/mdsumner/gdal-builds:gdal-dev_python_R
+    container: ghcr.io/rocker-org/geospatial:dev-osgeo
     # Only restrict concurrency for non-PR jobs
     concurrency:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
@@ -23,25 +23,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Install sudo and fix tzdata
-        run: |
-          apt-get update
-          ln -fs /usr/share/zoneinfo/UTC /etc/localtime
-          DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-          dpkg-reconfigure --frontend noninteractive tzdata
-          apt-get update && apt-get install -y sudo
-
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: install pak
-        run: Rscript -e 'install.packages("pak")'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: false
 
-      - name: install packages
-        run: Rscript -e 'pak::pak(c("rmarkdown", "markdown", "knitr"))'
-
-
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, local::.
+          needs: website
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
